@@ -1,0 +1,51 @@
+.hero_block {
+    .se-hero-block-container{
+        position:relative;
+        display: block;
+        flex: 0 0 100%;
+        width: 100%;
+        height:430px;
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(.55);
+        }
+        .hero-post-title-content{
+            position: relative;
+            padding-left: 1rem;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: flex-start;
+            max-width:80%;
+            h1{
+                color:white;
+                a:hover{
+                    color:white;
+                }
+            }
+            .post-category{
+                background-color:var(--color-1);
+                padding:.5rem;
+                border-radius:.25rem;
+                font-weight:bold;
+                margin-bottom:1rem;
+                a{
+                    color:white;
+                    text-transform:uppercase;
+                }
+            }
+        }
+        @media(max-width:767px){
+            .hero-post-title-content{
+                padding:1rem;
+            }
+        }
+    }
+}

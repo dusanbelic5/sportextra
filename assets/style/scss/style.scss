@@ -1,0 +1,51 @@
+/* Custom CSS */
+
+:root{
+	--color-1: #005a8c;
+    --color-2:  #1f1e1e;
+	--font-family-1:'Larken';
+	--font-family-2:'Work sans';
+	--spacing-1:3rem 0;
+	--spacing-2:6rem 0;
+}
+
+.se-container{
+	max-width:90%;
+	margin:auto;
+}
+
+body .se-block:first-child{
+	margin-top:0;
+}
+
+
+@media(min-width:1440px){
+	.se-container{
+		max-width:1080px;
+	}
+}
+
+
+@import "typography";
+@import "header";
+
+a{
+	text-decoration: none;
+}
+
+.se-block{
+	margin: var(--spacing-1)
+}
+
+.alignfull {
+	width: 100%;
+	margin: auto;
+}
+
+.alignwide {
+	width: 80%;
+	margin: auto;
+}
+
+
+@import "blocks/load";

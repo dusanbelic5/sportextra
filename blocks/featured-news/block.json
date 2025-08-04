@@ -1,0 +1,20 @@
+{
+    "name": "acf/featured-news",
+    "title": "Featured News",
+    "description": "This is hero section for page",
+    "category": "sport-extra",
+    "icon": {
+        "src":"excerpt-view",
+        "background":"#005a8c"
+    },
+    "keywords": ["Featured News", "News"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "featured-news.php"
+    },
+	"supports": {
+		"html": false,
+		"align": [ "wide"]
+	}
+}
+

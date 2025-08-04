@@ -1,0 +1,20 @@
+{
+    "name": "acf/hero",
+    "title": "Hero",
+    "description": "This is hero section for page",
+    "category": "sport-extra",
+    "icon": {
+        "src":"superhero",
+        "background":"#005a8c"
+    },
+    "keywords": ["HERO"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "hero.php"
+    },
+	"supports": {
+		"html": false,
+		"align": [ "wide"]
+	}
+}
+
