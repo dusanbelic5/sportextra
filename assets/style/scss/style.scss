@@ -3,10 +3,12 @@
 :root{
 	--color-1: #005a8c;
     --color-2:  #1f1e1e;
-	--font-family-1:'Larken';
-	--font-family-2:'Work sans';
-	--spacing-1:3rem 0;
+	--color-3: #ccdee8;
+	--color-4: #333;
+	--font-family-1:'Roboto';
+	--spacing-1:1.75rem 0;
 	--spacing-2:6rem 0;
+	--flex-gap:1.75rem;
 }
 
 .se-container{
@@ -21,13 +23,14 @@ body .se-block:first-child{
 
 @media(min-width:1440px){
 	.se-container{
-		max-width:1080px;
+		max-width:1380px;
 	}
 }
 
 
 @import "typography";
 @import "header";
+@import "footer";
 
 a{
 	text-decoration: none;
@@ -35,6 +38,14 @@ a{
 
 .se-block{
 	margin: var(--spacing-1)
+}
+
+@media(max-width:980px){
+	:root{
+		--spacing-1:1.5rem 0;
+		--spacing-2:4rem 0;
+		--flex-gap:1.5rem;
+	}
 }
 
 .alignfull {

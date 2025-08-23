@@ -1,0 +1,20 @@
+{
+    "name": "acf/scrolling-news",
+    "title": "Scrolling News",
+    "description": "This is hero section for page",
+    "category": "sport-extra",
+    "icon": {
+        "src":"excerpt-view",
+        "background":"#005a8c"
+    },
+    "keywords": ["Scrolling News", "News"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "scrolling-news.php"
+    },
+	"supports": {
+		"html": false,
+		"align": [ "wide"]
+	}
+}
+

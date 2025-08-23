@@ -36,7 +36,7 @@ function sportExtra_setup() {
 		array(
 			'primary' => esc_html__( 'Primary', 'sport-extra' ),
 		    'footer' => esc_html__('Footer', 'sport-extra'),
-			'footer-bottom' => esc_html__('Footer bottom', 'sport-extra')
+			'fixed' => esc_html__('Fixed', 'sport-extra')
 		)
 	);
 
@@ -239,3 +239,31 @@ add_filter('wp_enqueue_scripts','insert_jquery_in_header',1);
 			remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
 		}
 	});
+
+
+	
+	add_filter('walker_nav_menu_start_el', function($item_output, $item, $depth, $args) {
+		if (isset($args->theme_location) && $args->theme_location === 'fixed') {
+			
+			if ($item->object === 'category') {
+				$icon = get_field('category_icon', 'category_' . $item->object_id);
+	
+				// If it's an array, get the 'url' key
+				if (is_array($icon) && isset($icon['url'])) {
+					$icon_url = $icon['url'];
+				} elseif (is_string($icon)) {
+					$icon_url = $icon;
+				} else {
+					$icon_url = '';
+				}
+	
+				if (!empty($icon_url)) {
+					$icon_html = '<img src="' . esc_url($icon_url) . '" alt="" class="menu-category-icon" />';
+					// Insert inside the link, before the category name
+					$item_output = preg_replace('/(<a\b[^>]*>)(.*)/i', '$1' . $icon_html . '$2', $item_output);
+				}
+			}
+		}
+		return $item_output;
+	}, 10, 4);
+	

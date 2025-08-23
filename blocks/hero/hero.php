@@ -11,7 +11,7 @@
  * @param   array $context The context provided to the block by the post or it's parent block.
  */
 
-// Create class attribute allowing for custom "className".
+
 $class_name       = 'hero_block';
 if ( ! empty( $block['className'] ) ) {
     $class_name .= ' ' . $block['className'];
@@ -38,7 +38,6 @@ $hero_query = new WP_Query($args);
             <?php if ($hero_query->have_posts()) : ?>
                 <?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
                     <?php the_post_thumbnail('full'); ?>
-
                     <div class="hero-post-title-content">
                         <?php
                         $categories = get_the_category();
@@ -50,12 +49,11 @@ $hero_query = new WP_Query($args);
 									echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">';
                                     echo esc_html($category->name);
 									echo '</a>';
-                                    break; // Show only the first category; remove this if you want all categories
+                                    break;
                                 }
                                 ?>
                             </span>
                         <?php endif; ?>
-
                         <h1>
                             <a href="<?php echo esc_url(get_permalink()); ?>">
                                 <?php the_title(); ?>

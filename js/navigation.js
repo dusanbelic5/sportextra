@@ -13,32 +13,18 @@
 		this.classList.toggle('active');
 	});
 
-	// Close menu when clicking outside
-	document.addEventListener('click', function (e) {
-		const isClickInside = mobileNav.contains(e.target) || menuToggle.contains(e.target);
+	// Submenu toggle only on arrow
+	const submenuToggles = mobileNav.querySelectorAll('.menu-item-has-children');
 
-		if (!isClickInside && mobileNav.classList.contains('toggled')) {
-			mobileNav.classList.remove('toggled');
-			menuToggle.classList.remove('active');
-			menuToggle.setAttribute('aria-expanded', 'false');
-		}
-	});
+	submenuToggles.forEach(item => {
+		// create arrow element
+		const toggle = document.createElement('span');
+		toggle.classList.add('submenu-toggle');
+		item.appendChild(toggle);
 
-	// ✅ Submenu toggle on mobile
-	const submenuLinks = mobileNav.querySelectorAll('.menu-item-has-children > a');
-
-	submenuLinks.forEach(link => {
-		link.addEventListener('click', function (e) {
-			if (window.innerWidth <= 980) {
-				e.preventDefault(); // disable link on mobile
-
-				const parentItem = this.parentElement;
-				const subMenu = parentItem.querySelector('.sub-menu');
-
-				if (subMenu) {
-					parentItem.classList.toggle('submenu-open');
-				}
-			}
+		toggle.addEventListener('click', function (e) {
+			e.preventDefault();
+			item.classList.toggle('submenu-open');
 		});
 	});
 })();

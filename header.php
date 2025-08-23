@@ -51,14 +51,30 @@
 				?>
 			</nav>
 			<nav class="desktop-nav">
+				<div class="desktop-only">
 					<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'primary',
-								'menu_id'        => 'primary-menu',
-							)
-						);
+					wp_nav_menu([
+						'theme_location' => 'primary',
+						'menu_id'        => 'primary-menu-desktop',
+						'fallback_cb'    => false,
+					]);
 					?>
+					<div class="se-header-social">
+						<a href="" target="_blank" aria-label="Instagram"><img src="<?php echo get_template_directory_uri(); ?>/img/instagram-icon.svg" height="24px" width="24px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="" target="_blank" aria-label="Facebook"><img src="<?php echo get_template_directory_uri(); ?>/img/facebook-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="" target="_blank" aria-label="YouTube"><img src="<?php echo get_template_directory_uri(); ?>/img/youtube-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="" target="_blank" aria-label="TikTok"><img src="<?php echo get_template_directory_uri(); ?>/img/tiktok-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+					</div>
+				</div>
+				<div class="mobile-only">
+					<?php
+					wp_nav_menu([
+						'theme_location' => 'fixed',
+						'menu_id'        => 'fixed-menu-mobile',
+						'fallback_cb'    => false,
+					]);
+					?>
+				</div>
 			</nav>
 		</div>
 	</header><!-- #masthead -->
