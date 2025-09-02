@@ -60,10 +60,10 @@
 					]);
 					?>
 					<div class="se-header-social">
-						<a href="" target="_blank" aria-label="Instagram"><img src="<?php echo get_template_directory_uri(); ?>/img/instagram-icon.svg" height="24px" width="24px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
-						<a href="" target="_blank" aria-label="Facebook"><img src="<?php echo get_template_directory_uri(); ?>/img/facebook-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
-						<a href="" target="_blank" aria-label="YouTube"><img src="<?php echo get_template_directory_uri(); ?>/img/youtube-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
-						<a href="" target="_blank" aria-label="TikTok"><img src="<?php echo get_template_directory_uri(); ?>/img/tiktok-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="https://www.instagram.com/_sportextra/" target="_blank" aria-label="Instagram"><img src="<?php echo get_template_directory_uri(); ?>/img/instagram-icon.svg" height="24px" width="24px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="https://www.facebook.com/SportExtraSrb/" target="_blank" aria-label="Facebook"><img src="<?php echo get_template_directory_uri(); ?>/img/facebook-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="https://www.youtube.com/@sportextra7553/" target="_blank" aria-label="YouTube"><img src="<?php echo get_template_directory_uri(); ?>/img/youtube-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
+						<a href="https://www.tiktok.com/@sportextra/" target="_blank" aria-label="TikTok"><img src="<?php echo get_template_directory_uri(); ?>/img/tiktok-icon.svg" height="15px" width="32px" alt="<?= get_bloginfo( 'name' ); ?>" class="style-svg"/></a>
 					</div>
 				</div>
 				<div class="mobile-only">

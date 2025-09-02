@@ -1,6 +1,6 @@
 <?php
 /**
- * Posts featured
+ * Posts featured Template.
  */
 
 $class_name = 'posts_featured_block';
@@ -19,7 +19,9 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
 ?>
 <div class="<?php echo esc_attr( $class_name ); ?> <?php echo preg_replace('/\W+/','',strtolower(strip_tags($heading))) ?> se-block <?php echo ($featured_style == "5") ? 'se-posts-featured-5' : 'se-posts-featured-4'; ?>">
     <div class="se-container">
-        <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><h3><?= $heading ?></h3></div><span class="h4"><a href="<?= esc_url($learn_more_url) ?>"><?= esc_html__('Pročitaj sve','sport-extra') ?></span></a></div>
+        <?php if($heading){ ?>
+            <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><h3><?= $heading ?></h3></div><span class="h4"><a href="<?= esc_url($learn_more_url) ?>"><?= esc_html__('Pročitaj sve','sport-extra') ?></span></a></div>
+            <?php } ?>
         <div class="se-posts-featured-list">
         <?php
         if ($post_to_display) {
@@ -27,7 +29,6 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
             foreach ($post_to_display as $selected_post) {
                 setup_postdata($selected_post);
                 $count++;
-
                 // First post wrapper (style 5 only)
                 if ($featured_style == "5" && $count == 1) {
                     echo '<div class="se-posts-featured-first">';

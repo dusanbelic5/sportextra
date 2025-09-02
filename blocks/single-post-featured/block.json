@@ -1,0 +1,20 @@
+{
+    "name": "acf/single-post-featured",
+    "title": "Single Post Featured",
+    "description": "This is hero section for page",
+    "category": "sport-extra",
+    "icon": {
+        "src":"excerpt-view",
+        "background":"#005a8c"
+    },
+    "keywords": ["Single Post Featured", "Featured News"],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "single-post-featured.php"
+    },
+	"supports": {
+		"html": false,
+		"align": [ "wide"]
+	}
+}
+

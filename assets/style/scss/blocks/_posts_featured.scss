@@ -24,13 +24,13 @@
             flex: 0 0 auto;
             font-weight: bold;
             justify-content: center;
-            padding: 0 1.25rem;
+            padding: 0;
             text-align: center;
             text-transform: uppercase;
             white-space: nowrap;
             h3{
                 font-size:1rem;
-                padding:0;
+                padding: .75rem 1.25rem;
                 margin:auto 0;
             }
         }
@@ -125,6 +125,17 @@
                     }
                 }
                 h4{
+                    padding:.5rem 0;
+                    margin:0;
+                    a{
+                        color:var(--color-2);
+                        display: inline-block;
+                        &:hover{
+                            color:var(--color-1);
+                        }
+                    }
+                }
+                h5{
                     padding:.5rem 0;
                     margin:0;
                     a{

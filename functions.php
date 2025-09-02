@@ -129,6 +129,7 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+add_filter( 'widget_text', 'do_shortcode' );
 
 
 
@@ -267,3 +268,125 @@ add_filter('wp_enqueue_scripts','insert_jquery_in_header',1);
 		return $item_output;
 	}, 10, 4);
 	
+
+
+
+// Register widget areas
+function sport_extra_widgets_init() {
+    register_sidebar( array(
+        'name'          => __( 'Single Post Sidebar', 'sport-extra' ),
+        'id'            => 'single-sidebar',
+        'description'   => __( 'Single post sidebar for the Sport Extra theme.', 'sport-extra' ),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">', 
+        'after_widget'  => '</div>', 
+        'before_title'  => '<h3 class="widget-title">', 
+        'after_title'   => '</h3>', 
+    ) );
+}
+add_action( 'widgets_init', 'sport_extra_widgets_init' );
+
+
+
+// Shortcode for tag related posts
+function se_related_posts_by_tags_shortcode( $atts ) {
+    global $post;
+
+    // Ensure we're on a single post
+    if ( ! is_singular( 'post' ) || ! isset( $post->ID ) ) {
+        return '';
+    }
+
+    // Get current post tags
+    $tags = wp_get_post_tags( $post->ID, array( 'fields' => 'ids' ) );
+    if ( empty( $tags ) ) {
+        return '';
+    }
+
+    // Query last 4 posts with same tags
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => 4,
+        'post__not_in'   => array( $post->ID ),
+        'tag__in'        => $tags,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+    $related_query = new WP_Query( $args );
+
+    // Build output
+    $output = '<div class="se-related-posts-single"><div class="se-related-posts-single-title-section"><p class="h4">Extra vesti</p></div>';
+    if ( $related_query->have_posts() ) {
+        while ( $related_query->have_posts() ) {
+            $related_query->the_post();
+
+            $output .= '<article class="se-related-post-single">';
+
+            // ✅ Image wrapped in link
+            if ( has_post_thumbnail() ) {
+                $output .= '<a href="' . get_the_permalink() . '" class="se-related-thumb">'
+                        . get_the_post_thumbnail( get_the_ID(), 'thumbnail' )
+                        . '</a>';
+            }
+
+            // ✅ Title wrapped in link
+            $output .= '<p class="h4 se-related-title">'
+                    . '<a href="' . get_the_permalink() . '">' . get_the_title() . '</a>'
+                    . '</p>';
+
+            $output .= '</article>';
+        }
+    } else {
+        $output .= '';
+    }
+    $output .= '</div>';
+
+    wp_reset_postdata();
+
+    return $output;
+}
+add_shortcode( 'related_posts_by_tags', 'se_related_posts_by_tags_shortcode' );
+
+
+
+// Shortcode for social icons on single post
+function social_links_shortcode( $atts ) {
+    // Get fields from ACF options page
+	$heading = get_field('heading', 'option');
+    $facebook  = get_field( 'facebook', 'option' );
+    $instagram = get_field( 'instagram', 'option' );
+	$youtube  = get_field( 'youtube', 'option' );
+    $tiktok = get_field( 'tiktok', 'option' );
+
+
+    $output = '<div class="se-widget-social-links"><div class="se-widget-social-links-heading-section"><p class="h4">'.$heading.'</p></div>';
+
+	if ( $instagram ) {
+		$output .= '<div class="se-widget-social-links-list"><a href="' . esc_url( $instagram ) . '" target="_blank" rel="noopener" aria-label="Instagram">';
+		$output .= '<img src="' . get_template_directory_uri() . '/img/instagram-icon.svg" height="24" width="24" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="style-svg"/>';
+		$output .= '</a>';
+	}
+
+	if ( $facebook ) {
+		$output .= '<a href="' . esc_url( $facebook ) . '" target="_blank" rel="noopener" aria-label="Facebook">';
+		$output .= '<img src="' . get_template_directory_uri() . '/img/facebook-icon.svg" height="15" width="32" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="style-svg"/>';
+		$output .= '</a>';
+	}
+
+	if ( $youtube ) {
+		$output .= '<a href="' . esc_url( $youtube ) . '" target="_blank" rel="noopener" aria-label="YouTube">';
+		$output .= '<img src="' . get_template_directory_uri() . '/img/youtube-icon.svg" height="15" width="32" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="style-svg"/>';
+		$output .= '</a>';
+	}
+
+	if ( $tiktok ) {
+		$output .= '<a href="' . esc_url( $tiktok ) . '" target="_blank" rel="noopener" aria-label="TikTok">';
+		$output .= '<img src="' . get_template_directory_uri() . '/img/tiktok-icon.svg" height="15" width="32" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" class="style-svg"/>';
+		$output .= '</a></div>';
+	}
+
+    $output .= '</div>';
+
+    return $output;
+}
+add_shortcode( 'social_links', 'social_links_shortcode' );
+
