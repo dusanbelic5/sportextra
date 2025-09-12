@@ -1,33 +1,29 @@
 <?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package Sport_Extra
- */
-
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main se-container se-single-post">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+    <?php
+    while ( have_posts() ) :
+        the_post();
 
-			get_template_part( 'template-parts/content', get_post_type() );
-			?>
-			<?php
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+        get_template_part( 'template-parts/content', get_post_type() );
 
-		endwhile; // End of the loop.
-		?>
 
-	</main><!-- #main -->
+		var_dump(comments_template());
+		
+        // Only display comments on single posts
+        if ( comments_open() || get_comments_number() ) :
+            echo '<div class="se-comments-wrapper">';
+            comments_template();
+            echo '</div>';
+        endif;
+
+    endwhile;
+    ?>
+
+</main>
 
 <?php
 get_footer();

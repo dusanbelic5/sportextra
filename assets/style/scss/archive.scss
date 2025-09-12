@@ -1,0 +1,99 @@
+.archive{
+    #primary{
+        display: flex;
+        justify-content: space-between;
+        .se-archive-content-part{
+            width:70%;
+            .se-single-archive-main{
+                margin: var(--spacing-1);
+                article{
+                    display: flex;
+                    flex: 0 0 100%;
+                    position: relative;
+                    width: 100%;
+                    flex-wrap:wrap;
+                    .se-post-thumbnail{
+                        width: 50%;
+                        img{
+                            aspect-ratio: 16 / 9;
+                            display: block;
+                            object-fit: cover;
+                        }
+                    }
+                    .entry-header{
+                        align-items: flex-start;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding-left: 1.75rem;
+                        position: relative;
+                        width: 50%;
+                        margin:1rem 0;
+                    }
+                    a{
+                        color:var(--color-2);
+                        transition:350ms color;
+                        &:hover{
+                            color:var(--color-1);
+                        }
+                    }
+                }
+            }
+            .se-archive-list{
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--flex-gap);
+                article{
+                    flex: 1 1 calc(33.33% - var(--flex-gap) / 2);
+                    max-width: calc(33.33% - var(--flex-gap) / 2);
+                    img{
+                        aspect-ratio: 16 / 9;
+                        display: block;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                    a{
+                        color:var(--color-2);
+                        transition:350ms color;
+                        &:hover{
+                            color:var(--color-1);
+                        }
+                    }
+                }
+            }
+        }
+        aside{
+            width: 27.5%;
+        }
+        @media(max-width: 980px){
+            flex-wrap:wrap;
+            .se-archive-content-part{
+                width:100%;
+                .se-single-archive-main{
+                    article{
+                        .se-post-thumbnail{
+                            width:100%;
+                        }
+                        .entry-header{
+                            width:100%;
+                            padding-left:0;
+                            .se-post-entry-meta{
+                                display:none;
+                            }
+                        }
+                    }
+                }
+                .se-archive-list{
+                    article{
+                        width:100%;
+                        max-width:100%;
+                        flex:0 1 100%
+                    }
+                }
+            }
+            aside{
+                width:100%;
+            }
+        }
+    }
+}

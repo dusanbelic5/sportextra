@@ -59,6 +59,7 @@ a{
 }
 
 @import "single";
+@import "archive";
 @import "blocks/load";
 
 
@@ -81,6 +82,9 @@ a{
 			text-align: center;
 			text-transform: uppercase;
 			white-space: nowrap;
+			@media(max-width:980px){
+				padding:.75rem;
+			}
 		}
 	}
 	.se-widget-social-links-list{

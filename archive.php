@@ -10,41 +10,49 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main se-container">
+        <div class="se-archive-content-part">
+        <h1 class="page-title"><?php single_cat_title(); ?></h1>
+        <?php the_archive_description( '<div class="archive-description">', '</div>' ); ?>
 
-		<?php if ( have_posts() ) : ?>
+        <?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+            <?php
+            $counter = 0;
+            while ( have_posts() ) : the_post();
+                if ( $counter === 0 ) {
+                    // First post (special template)
+                    get_template_part( 'template-parts/content-archive-main', get_post_type() );
+                    echo '<div class="se-archive-list">';
+                } else {
+                    // Normal posts
+                    get_template_part( 'template-parts/content-archive', get_post_type() );
+                }
+                $counter++;
+            endwhile;
+            echo '</div>'; // close se-archive-list
+            ?>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+            <?php
+            the_posts_pagination( array(
+                'mid_size'  => 10,
+                'prev_text' => __( '«', 'sport_extra' ),
+                'next_text' => __( '»', 'sport_extra' ),
+            ) );
+            ?>
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+        <?php else : ?>
 
-			endwhile;
+            <?php get_template_part( 'template-parts/content', 'none' ); ?>
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
+        <?php endif; ?>
+        </div>
+            <?php if ( is_active_sidebar( 'single-sidebar' ) ) : ?>
+            <aside class="sidebar">
+                <?php dynamic_sidebar( 'single-sidebar' ); ?>
+            </aside>
+        <?php endif; ?>
+</main><!-- #main -->
 
 <?php
 get_sidebar();

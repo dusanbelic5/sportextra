@@ -20,7 +20,7 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
 <div class="<?php echo esc_attr( $class_name ); ?> <?php echo preg_replace('/\W+/','',strtolower(strip_tags($heading))) ?> se-block <?php echo ($featured_style == "5") ? 'se-posts-featured-5' : 'se-posts-featured-4'; ?>">
     <div class="se-container">
         <?php if($heading){ ?>
-            <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><h3><?= $heading ?></h3></div><span class="h4"><a href="<?= esc_url($learn_more_url) ?>"><?= esc_html__('Pročitaj sve','sport-extra') ?></span></a></div>
+            <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><h2 class="h3"><?= $heading ?></h2></div><span class="h4"><a href="<?= esc_url($learn_more_url) ?>"><?= esc_html__('Pročitaj sve','sport-extra') ?></span></a></div>
             <?php } ?>
         <div class="se-posts-featured-list">
         <?php
@@ -51,11 +51,11 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
                         }
                         ?>
                         <div class="se-posts-featured-single-content">
-                            <h4 class="<?php if($featured_style == "5")echo'h3'?>">
+                            <span class="<?php echo ($featured_style == '5') ? 'h3' : 'h4'; ?>">
                                 <a href="<?php echo esc_url( get_permalink($selected_post) ); ?>">
                                     <?= esc_html( get_the_title($selected_post) ); ?>
                                 </a>
-                            </h4>
+                            </span>
                         </div>
 
                 </article>

@@ -86,11 +86,11 @@ $featured_news_query_right = new WP_Query($args_right);
                     <?php endif; ?>
                 </div>
                 <div class="featured-news-post-title-content">
-                    <a href="<?php echo esc_url(get_permalink()); ?>">
-                        <h2>
-                        <?php the_title(); ?>
-                        </h2>
-                    </a>
+                    <span class="h2">
+                        <a href="<?php echo esc_url(get_permalink()); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                    </span>
                 </div>
                 <?php endwhile; ?>
             <?php endif; ?>
@@ -120,11 +120,11 @@ $featured_news_query_right = new WP_Query($args_right);
                     <?php endif; ?>
                 </div>
                 <div class="featured-news-post-title-content">
-                    <h2>
+                    <span class="h2">
                         <a href="<?php echo esc_url(get_permalink()); ?>">
                             <?php the_title(); ?>
                         </a>
-                    </h2>
+                    </span class="h2">
                 </div>
                 <?php endwhile; ?>
             <?php endif; ?>
@@ -154,11 +154,11 @@ $featured_news_query_right = new WP_Query($args_right);
                     <?php endif; ?>
                 </div>
                 <div class="featured-news-post-title-content">
-                    <h2>
+                    <span class="h2">
                         <a href="<?php echo esc_url(get_permalink()); ?>">
                             <?php the_title(); ?>
                         </a>
-                    </h2>
+                    </span class="h2">
                 </div>
                 <?php endwhile; ?>
             <?php endif; ?>

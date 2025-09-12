@@ -6,10 +6,9 @@ if(!$author_image){
     $author_image = get_template_directory_uri().'/img/author-image.jpg';
 }
 ?>
-
-    
-    <div class="se-single-content-wrapper">
+    <div class="se-single-archive-main">
         
+        <!-- Main article content -->
         <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
             
             <!-- Featured Image -->
@@ -19,9 +18,8 @@ if(!$author_image){
                 </div>
             <?php endif; ?>
             
-            <header class="entry-header">
-                <h1 class="entry-title"><?php the_title(); ?></h1>
-                
+            <div class="entry-header">
+                <span class="h1"><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></span>
                 <div class="se-post-entry-meta">
                     <div class="se-meta-author-image-part">
                          <a href="<?php echo get_author_posts_url( $post->post_author); ?>"><img src="<?= $author_image ?>"/></a>
@@ -36,39 +34,8 @@ if(!$author_image){
                         </span>
                     </div>
                 </div>
-            </header>
-            
-            <div class="entry-content">
-                <?php the_content(); ?>
             </div>
-            
-            <?php the_tags( '<span class="se-tags">', '', '</span>' ); ?>
-            <?php
-                // Comments go here, only on single posts
-                if ( is_singular() && ( comments_open() || get_comments_number() ) ) :
-                    echo 'kom<div class="se-comments-wrapper">';
-                    comments_template();
-                    echo '</div>';
-                endif;
-            ?>
-            <div class="se-container">
-			<?php
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Prethodna vest:', 'sport-extra' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Sledeća vest:', 'sport-extra' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
-			?>
-			</div>
+
         </article>
         
-        <!-- Sidebar -->
-        <?php if ( is_active_sidebar( 'single-sidebar' ) ) : ?>
-            <aside class="sidebar">
-                <?php dynamic_sidebar( 'single-sidebar' ); ?>
-            </aside>
-        <?php endif; ?>
-        
     </div><!-- .content-wrapper -->
-

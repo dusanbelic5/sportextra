@@ -36,6 +36,7 @@ function sportExtra_setup() {
 		array(
 			'primary' => esc_html__( 'Primary', 'sport-extra' ),
 		    'footer' => esc_html__('Footer', 'sport-extra'),
+			'footer-categories' => esc_html__('Footer Categories', 'sport-extra'),
 			'fixed' => esc_html__('Fixed', 'sport-extra')
 		)
 	);
@@ -200,48 +201,6 @@ add_filter('wp_enqueue_scripts','insert_jquery_in_header',1);
 
 
 
-
-	add_action('admin_init', function () {
-		// Redirect any user trying to access comments page
-		global $pagenow;
-		 
-		if ($pagenow === 'edit-comments.php') {
-			wp_safe_redirect(admin_url());
-			exit;
-		}
-	 
-		// Remove comments metabox from dashboard
-		remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal');
-	 
-		// Disable support for comments and trackbacks in post types
-		foreach (get_post_types() as $post_type) {
-			if (post_type_supports($post_type, 'comments')) {
-				remove_post_type_support($post_type, 'comments');
-				remove_post_type_support($post_type, 'trackbacks');
-			}
-		}
-	});
-	 
-	// Close comments on the front-end
-	add_filter('comments_open', '__return_false', 20, 2);
-	add_filter('pings_open', '__return_false', 20, 2);
-	 
-	// Hide existing comments
-	add_filter('comments_array', '__return_empty_array', 10, 2);
-	 
-	// Remove comments page in menu
-	add_action('admin_menu', function () {
-		remove_menu_page('edit-comments.php');
-	});
-	 
-	// Remove comments links from admin bar
-	add_action('init', function () {
-		if (is_admin_bar_showing()) {
-			remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
-		}
-	});
-
-
 	
 	add_filter('walker_nav_menu_start_el', function($item_output, $item, $depth, $args) {
 		if (isset($args->theme_location) && $args->theme_location === 'fixed') {
@@ -390,3 +349,14 @@ function social_links_shortcode( $atts ) {
 }
 add_shortcode( 'social_links', 'social_links_shortcode' );
 
+function sport_extra_archive_posts_per_page( $query ) {
+    if ( ! is_admin() && $query->is_main_query() && is_archive() ) {
+        $query->set( 'posts_per_page', 5 );
+    }
+}
+add_action( 'pre_get_posts', 'sport_extra_archive_posts_per_page' );
+
+function sport_extra_enable_comments() {
+    add_post_type_support( 'post', 'comments' );
+}
+add_action( 'init', 'sport_extra_enable_comments' );

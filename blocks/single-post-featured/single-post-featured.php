@@ -13,9 +13,8 @@ $heading         = get_field('heading');
 $post_to_display = get_field('posts_to_display');
 ?>
 <div class="<?php echo esc_attr( $class_name ); ?> <?php echo preg_replace('/\W+/','',strtolower(strip_tags($heading))) ?> se-block se-posts-featured-4">
-    <div class="se-container">
         <?php if($heading){ ?>
-            <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><h3><?= $heading ?></h3></div><span class="h4"></div>
+            <div class="se-posts-featured-top-section"><div class="se-posts-featured-heading"><span class="h4"><?= $heading ?></span></div></div>
             <?php } ?>
         <div class="se-posts-featured-list">
         <?php
@@ -37,11 +36,11 @@ $post_to_display = get_field('posts_to_display');
                         }
                         ?>
                         <div class="se-posts-featured-single-content">
-                            <h5 class="">
+                            <span class="h5">
                                 <a href="<?php echo esc_url( get_permalink($selected_post) ); ?>">
                                     <?= esc_html( get_the_title($selected_post) ); ?>
                                 </a>
-                            </h5>
+                            </span>
                         </div>
                 </article>
                 <?php
@@ -50,5 +49,4 @@ $post_to_display = get_field('posts_to_display');
         }
         ?>
         </div>
-    </div>
 </div>
