@@ -29,7 +29,19 @@ $post_to_display = get_field('posts_to_display');
                         if (has_post_thumbnail($selected_post)) { ?>
                         <div class="se-posts-featured-single-image">
                             <a href="<?php echo esc_url( get_permalink($selected_post) ); ?>">
-                                <?= get_the_post_thumbnail($selected_post, 'full'); ?>
+                                <?php
+                                    $img_id = get_post_thumbnail_id($selected_post);
+                                    $full   = wp_get_attachment_image_src($img_id, 'posts_featured_image');
+                                    $thumb  = wp_get_attachment_image_src($img_id, 'image_lazy');
+                                ?>
+                                <img
+                                    src="<?php echo esc_url($thumb[0]); ?>"
+                                    data-src="<?php echo esc_url($full[0]); ?>"
+                                    width="<?php echo esc_attr($full[1]); ?>"
+                                    height="<?php echo esc_attr($full[2]); ?>"
+                                    class="lazy-blur"
+                                    alt="<?php echo esc_attr(get_the_title($selected_post)); ?>"
+                                >
                             </a>
                         </div>
                         <?php

@@ -43,6 +43,7 @@
             gap:var(--flex-gap);
             img{
                 display:block;
+                width:100%;
             }
             .se-posts-featured-first{
                 flex: 1 1 0;
@@ -82,7 +83,6 @@
                         }
                     }
                     .se-posts-featured-single-image{
-                        //height: 195px;
                         display: block;
                         img{
                             display:block;
@@ -118,7 +118,6 @@
                 flex: 1 1 0;
                 width:calc(33.33% - calc(var(--flex-gap) /2) );
                 .se-posts-featured-single-image{
-                    //height: 195px;
                     display: block;
                     img{
                         display:block;
@@ -159,6 +158,9 @@
                 flex-direction: column;
                     .se-posts-featured-single{
                         width:100%;
+                        img{
+                            width:100%;
+                        }
                     }
             }
         }

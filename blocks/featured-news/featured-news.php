@@ -66,8 +66,21 @@ $featured_news_query_right = new WP_Query($args_right);
             <?php if ($featured_news_query_left->have_posts()) : ?>
                 <?php while ($featured_news_query_left->have_posts()) : $featured_news_query_left->the_post(); ?>
                 <div class="se-featured-news-image-category">
+                    <?php
+                    $img_id = get_post_thumbnail_id();
+                    $full   = wp_get_attachment_image_src( $img_id, 'featured_news_image' );
+                    $thumb  = wp_get_attachment_image_src( $img_id, 'image_lazy' );
+                    ?>
+
                     <a href="<?php echo esc_url(get_permalink()); ?>">
-                        <?php the_post_thumbnail('full'); ?>
+                        <img 
+                            src="<?php echo esc_url($thumb[0]); ?>" 
+                            data-src="<?php echo esc_url($full[0]); ?>" 
+                            width="<?php echo esc_attr($full[1]); ?>" 
+                            height="<?php echo esc_attr($full[2]); ?>"
+                            class="lazy-blur"
+                            alt="<?php the_title_attribute(); ?>"
+                        >
                     </a>
                     <?php
                         $categories = get_the_category();
@@ -100,8 +113,21 @@ $featured_news_query_right = new WP_Query($args_right);
             <?php if ($featured_news_query_middle->have_posts()) : ?>
                 <?php while ($featured_news_query_middle->have_posts()) : $featured_news_query_middle->the_post(); ?>
                 <div class="se-featured-news-image-category">
+                    <?php
+                    $img_id = get_post_thumbnail_id();
+                    $full   = wp_get_attachment_image_src( $img_id, 'featured_news_image' );
+                    $thumb  = wp_get_attachment_image_src( $img_id, 'image_lazy' );
+                    ?>
+
                     <a href="<?php echo esc_url(get_permalink()); ?>">
-                        <?php the_post_thumbnail('full'); ?>
+                        <img 
+                            src="<?php echo esc_url($thumb[0]); ?>" 
+                            data-src="<?php echo esc_url($full[0]); ?>" 
+                            width="<?php echo esc_attr($full[1]); ?>" 
+                            height="<?php echo esc_attr($full[2]); ?>"
+                            class="lazy-blur"
+                            alt="<?php the_title_attribute(); ?>"
+                        >
                     </a>
                     <?php
                         $categories = get_the_category();
@@ -134,8 +160,21 @@ $featured_news_query_right = new WP_Query($args_right);
             <?php if ($featured_news_query_right->have_posts()) : ?>
                 <?php while ($featured_news_query_right->have_posts()) : $featured_news_query_right->the_post(); ?>
                 <div class="se-featured-news-image-category">
+                    <?php
+                    $img_id = get_post_thumbnail_id();
+                    $full   = wp_get_attachment_image_src( $img_id, 'featured_news_image' );
+                    $thumb  = wp_get_attachment_image_src( $img_id, 'image_lazy' );
+                    ?>
+
                     <a href="<?php echo esc_url(get_permalink()); ?>">
-                        <?php the_post_thumbnail('full'); ?>
+                        <img 
+                            src="<?php echo esc_url($thumb[0]); ?>" 
+                            data-src="<?php echo esc_url($full[0]); ?>" 
+                            width="<?php echo esc_attr($full[1]); ?>" 
+                            height="<?php echo esc_attr($full[2]); ?>"
+                            class="lazy-blur"
+                            alt="<?php the_title_attribute(); ?>"
+                        >
                     </a>
                     <?php
                         $categories = get_the_category();

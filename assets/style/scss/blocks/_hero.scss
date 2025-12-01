@@ -20,16 +20,17 @@
             width:50%;
             .post-category{
                 background-color:var(--color-1);
-                padding:.5rem;
                 border-radius:.25rem;
                 font-weight:bold;
                 margin-bottom:1rem;
                 a{
                     color:white;
                     text-transform:uppercase;
+                    padding:.5rem;
+                    display:block;
                 }
             }
-            span a{
+            span.h1 a{
                 color:var(--color-2);
                 display: inline-block;
                 &:hover{

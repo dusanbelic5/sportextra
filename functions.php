@@ -194,9 +194,9 @@ add_filter('wp_enqueue_scripts','insert_jquery_in_header',1);
 
 
 
-    function currentYear(){
-        return date('Y');
-    }
+function currentYear(){
+    return date('Y');
+}
 
 
 
@@ -360,3 +360,19 @@ function sport_extra_enable_comments() {
     add_post_type_support( 'post', 'comments' );
 }
 add_action( 'init', 'sport_extra_enable_comments' );
+
+
+function se_remove_comment_url_field( $fields ) {
+    if ( isset( $fields['url'] ) ) {
+        unset( $fields['url'] );
+    }
+    return $fields;
+}
+add_filter( 'comment_form_default_fields', 'se_remove_comment_url_field' );
+
+
+add_image_size('featured_news_image', 441, 248, true);
+add_image_size('image_lazy', 44, 25, true);
+
+add_image_size('posts_featured_image', 324, 182, true );
+add_image_size('posts_featured_image_single', 324, 182, true );

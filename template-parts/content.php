@@ -46,7 +46,7 @@ if(!$author_image){
             <?php
                 // Comments go here, only on single posts
                 if ( is_singular() && ( comments_open() || get_comments_number() ) ) :
-                    echo 'kom<div class="se-comments-wrapper">';
+                    echo '<div class="se-comments-wrapper">';
                     comments_template();
                     echo '</div>';
                 endif;
