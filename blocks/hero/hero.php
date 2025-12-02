@@ -31,12 +31,14 @@ if (!empty($post)) {
 }
 
 $hero_query = new WP_Query($args);
+
 ?>
 <div class="<?php echo esc_attr( $class_name ); ?> <?php echo preg_replace('/\W+/','',strtolower(strip_tags($heading)))?> se-block">
     <div class="se-container">
         <div class="se-hero-block-container">
             <?php if ($hero_query->have_posts()) : ?>
                 <?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
+
                     <?php the_post_thumbnail('full'); ?>
                     <div class="hero-post-title-content">
                         <?php

@@ -21,9 +21,6 @@ if(!$author_image){
             <div class="entry-header">
                 <span class="h1"><a href="<?php echo esc_url(get_permalink()); ?>"><?php the_title(); ?></a></span>
                 <div class="se-post-entry-meta">
-                    <div class="se-meta-author-image-part">
-                         <a href="<?php echo get_author_posts_url( $post->post_author); ?>"><img src="<?= $author_image ?>"/></a>
-                    </div>
                     <div class="se-meta-info-part">
                         <span class="se-author"><a href="<?php echo get_author_posts_url( $post->post_author); ?>"><?php the_author(); ?></a></span>
                         <span class="se-date">

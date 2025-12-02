@@ -101,7 +101,6 @@
                     font-size:1.25rem;
                 }
                 .se-posts-featured-others{
-                    flex-direction: column;
                     .se-posts-featured-single{
                         width:100%;
                     }
@@ -111,12 +110,10 @@
     }
     &.se-posts-featured-4{
         .se-posts-featured-list{
-            display:flex;
-            flex-wrap:wrap;
+            display:grid;
             gap:var(--flex-gap);
+            grid-template-columns: repeat(4, 1fr);
             .se-posts-featured-single{
-                flex: 1 1 0;
-                width:calc(33.33% - calc(var(--flex-gap) /2) );
                 .se-posts-featured-single-image{
                     display: block;
                     img{
@@ -156,6 +153,7 @@
         @media(max-width:980px){
             .se-posts-featured-list{
                 flex-direction: column;
+                 grid-template-columns: 1fr;
                     .se-posts-featured-single{
                         width:100%;
                         img{

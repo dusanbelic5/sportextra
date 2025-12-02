@@ -1,8 +1,8 @@
 .featured_news_block{
     .se-featured-news-block-container{
-        display:flex;
-        justify-content: space-between;
+        display:grid;
         gap:var(--flex-gap);
+        grid-template-columns: repeat(3, 1fr);
         .se-featured-news-image-category{
             position:relative;
             img{
@@ -27,7 +27,6 @@
             }
         }
         > article{
-            flex: 1 1 0;
             .featured-news-post-title-content{
                 span{
                     display:block;
@@ -52,8 +51,12 @@
     }
     @media(max-width:980px){
         .se-featured-news-block-container{
-            flex-direction: column;
+            grid-template-columns: 1fr;
             .se-featured-news-image-category{
+                img{
+                    height:auto;
+                    width:100%;
+                }
                 .se-post-category{
                     font-size:.75rem;
                     padding:.25rem;

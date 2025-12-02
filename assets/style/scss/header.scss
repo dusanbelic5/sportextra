@@ -65,6 +65,9 @@ header{
                     color:white;
                     font-weight:bold;
                     text-transform: uppercase;
+                    &[aria-current="page"]{
+                        background-color: var(--color-1);
+                    }
                 }
                 ul{
                     display: none;
@@ -85,6 +88,11 @@ header{
                     }
                     a{
                         color:white;
+                    }
+                }
+                &:first-child{
+                    a[aria-current="page"]{
+                        background-color: var(--color-2);
                     }
                 }
             }

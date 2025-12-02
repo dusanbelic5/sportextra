@@ -102,7 +102,6 @@ function sport_extra_scripts() {
 	wp_enqueue_style( 'sport-extra-style', get_stylesheet_uri(), array(), _S_VERSION );
 
 	wp_enqueue_script( 'sport-extra-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	//wp_enqueue_script( 'sport-extra-tiny-slider', get_template_directory_uri() . '/js/tiny-slider.min.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -197,9 +196,6 @@ add_filter('wp_enqueue_scripts','insert_jquery_in_header',1);
 function currentYear(){
     return date('Y');
 }
-
-
-
 
 	
 	add_filter('walker_nav_menu_start_el', function($item_output, $item, $depth, $args) {
@@ -375,4 +371,13 @@ add_image_size('featured_news_image', 441, 248, true);
 add_image_size('image_lazy', 44, 25, true);
 
 add_image_size('posts_featured_image', 324, 182, true );
-add_image_size('posts_featured_image_single', 324, 182, true );
+
+
+function se_custom_archive_posts_per_page( $query ) {
+
+    if ( ! is_admin() && $query->is_main_query() && $query->is_archive() ) {
+        $query->set( 'posts_per_page', 8 );
+    }
+
+}
+add_action( 'pre_get_posts', 'se_custom_archive_posts_per_page' );

@@ -51,7 +51,6 @@ if(!$author_image){
                     echo '</div>';
                 endif;
             ?>
-            <div class="se-container">
 			<?php
 			the_post_navigation(
 				array(
@@ -60,7 +59,6 @@ if(!$author_image){
 				)
 			);
 			?>
-			</div>
         </article>
         
         <!-- Sidebar -->

@@ -61,6 +61,7 @@ $featured_news_query_right = new WP_Query($args_right);
 ?>
 <div class="<?php echo esc_attr( $class_name ); ?> <?php echo preg_replace('/\W+/','',strtolower(strip_tags($heading)))?> se-block">
     <div class="se-container">
+        
         <div class="se-featured-news-block-container">
             <article class="se-featured-news-single">
             <?php if ($featured_news_query_left->have_posts()) : ?>

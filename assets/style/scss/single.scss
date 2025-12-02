@@ -80,9 +80,16 @@
             display:flex;
             gap:var(--flex-gap);
             align-items: center;
+            margin-bottom:1.75rem;
             a{    
                 color:var(--color-2);
                 transition: color 350ms;
+                flex:1 0 auto;
+                img{
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    display:block;
+                }
             }
             &:hover{
                 a{
@@ -133,6 +140,7 @@
         }
     }
    .post-navigation{
+        margin-top:1.5rem;
         a{
             color:var(--color-2);
             transition:color 350ms;
@@ -146,6 +154,9 @@
         }
     }
     @media(max-width:980px){
+        .se-related-post-single{
+            margin-bottom:1.5rem;
+        }
         .se-single-content-wrapper{
             flex-wrap: wrap;
             > aside, > article{
