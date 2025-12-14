@@ -38,7 +38,6 @@ $hero_query = new WP_Query($args);
         <div class="se-hero-block-container">
             <?php if ($hero_query->have_posts()) : ?>
                 <?php while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
-
                     <?php the_post_thumbnail('full'); ?>
                     <div class="hero-post-title-content">
                         <?php

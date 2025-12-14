@@ -29,7 +29,7 @@ function sportExtra_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'blog-main-post', 500, 500 ); // 220 pixels wide by 180 pixels tall, soft proportional crop mode
+
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -377,6 +377,7 @@ add_filter( 'comment_form_default_fields', 'se_remove_comment_url_field' );
 
 add_image_size('featured_news_image', 441, 248, true);
 add_image_size('image_lazy', 44, 25, true);
+add_image_size( 'hero-mobile', 500, 500 );
 
 add_image_size('posts_featured_image', 324, 182, true );
 
