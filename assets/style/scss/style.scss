@@ -20,14 +20,12 @@ body .se-block:first-child{
 	margin-top:0;
 }
 
-/* Start blurred + slightly faded */
 .lazy-blur {
     object-fit: cover;
     filter: blur(20px);
     transition: filter 250ms ease;
 }
 
-/* When JS loads the full image */
 .lazy-blur.loaded {
     filter: blur(0);
     opacity: 1;
@@ -71,8 +69,8 @@ a{
 	margin: auto;
 }
 
-@import "single";
-@import "archive";
+//@import "single";
+//@import "archive";
 @import "blocks/load";
 
 

@@ -72,7 +72,6 @@ $featured_news_query_right = new WP_Query($args_right);
                     $full   = wp_get_attachment_image_src( $img_id, 'featured_news_image' );
                     $thumb  = wp_get_attachment_image_src( $img_id, 'image_lazy' );
                     ?>
-
                     <a href="<?php echo esc_url(get_permalink()); ?>">
                         <img 
                             src="<?php echo esc_url($thumb[0]); ?>" 

@@ -101,6 +101,14 @@ add_action( 'after_setup_theme', 'sport_extra_content_width', 0 );
 function sport_extra_scripts() {
 	wp_enqueue_style( 'sport-extra-style', get_stylesheet_uri(), array(), _S_VERSION );
 
+	if (is_single()) {
+        wp_enqueue_style('single', get_template_directory_uri() . '/assets/build/scss/single.css');
+    }
+
+    if (is_archive()) {
+        wp_enqueue_style('archive', get_template_directory_uri() . '/assets/build/scss/archive.css');
+    }
+
 	wp_enqueue_script( 'sport-extra-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

@@ -47,7 +47,7 @@
         lazyImages.forEach(function(img){
             loadImage(img);
         });
-        // Remove listeners after first trigger
+        
         ['mousemove','mousedown','touchstart','scroll','keydown'].forEach(function(ev){
             window.removeEventListener(ev, triggerLoad);
         });
