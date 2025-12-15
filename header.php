@@ -18,6 +18,7 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<link rel="preload" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/build/fonts/roboto/Roboto-Bold.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
 <body <?php body_class(); ?>>
