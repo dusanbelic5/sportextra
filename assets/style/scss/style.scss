@@ -31,13 +31,14 @@ body .se-block:first-child{
     opacity: 1;
 }
 
-
+header.page-header{
+	padding:0;
+}
 @media(min-width:1440px){
 	.se-container{
 		max-width:1380px;
 	}
 }
-
 
 @import "typography";
 @import "header";
@@ -69,8 +70,6 @@ a{
 	margin: auto;
 }
 
-//@import "single";
-//@import "archive";
 @import "blocks/load";
 
 

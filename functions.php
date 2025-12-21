@@ -110,6 +110,7 @@ function sport_extra_scripts() {
     }
 
 	wp_enqueue_script( 'sport-extra-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'sport-extra-main', get_template_directory_uri() . '/js/main.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -117,28 +118,8 @@ function sport_extra_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'sport_extra_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
 
 add_filter( 'widget_text', 'do_shortcode' );
-
 
 
 add_action('init','register_all_blocks');
@@ -182,12 +163,12 @@ remove_action( 'wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles' );
 
 
 //Remove Gutenberg Block Library CSS from loading on the frontend
-function smartwp_remove_wp_block_library_css(){
+function se_remove_wp_block_library_css(){
  wp_dequeue_style( 'wp-block-library' );
  wp_dequeue_style( 'wp-block-library-theme' );
  wp_dequeue_style( 'wc-blocks-style' ); // Remove WooCommerce block CSS
 } 
-add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css', 100 );
+add_action( 'wp_enqueue_scripts', 'se_remove_wp_block_library_css', 100 );
 
 
 
@@ -378,10 +359,17 @@ add_filter( 'comment_form_default_fields', 'se_remove_comment_url_field' );
 add_image_size('featured_news_image', 441, 248, true);
 add_image_size('image_lazy', 44, 25, true);
 
-add_image_size( 'hero-mobile', 500, 500 );
+//add_image_size( 'hero-mobile', 500, 500 );
 
 add_image_size('posts_featured_image', 324, 182, true );
 
+
+add_filter('intermediate_image_sizes_advanced', function ($sizes) {
+    unset($sizes['medium']);
+    unset($sizes['medium_large']);
+    unset($sizes['large']);
+    return $sizes;
+});
 
 function se_custom_archive_posts_per_page( $query ) {
 

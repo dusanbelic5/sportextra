@@ -12,45 +12,68 @@ get_header();
 
 	<main id="primary" class="site-main">
 
-		<section class="error-404 not-found">
+		<section class="error-404 not-found se-container">
 			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'sport-extra' ); ?></h1>
+				<h1 class="page-title"><?php esc_html_e( 'Nažalost, stranica koju tražite nije pronađena', 'sport-extra' ); ?></h1>
 			</header><!-- .page-header -->
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'sport-extra' ); ?></p>
+			<div>
+				<p class="h2"><?php esc_html_e( 'Pogledajte naše najnovije vesti', 'sport-extra' ); ?></p>
+<?php
 
-					<?php
-					get_search_form();
+$args = [
+    'post_type'      => 'post',
+    'posts_per_page' => 8,
+    'post_status'    => 'publish',
+];
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+$query = new WP_Query($args);
+?>
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'sport-extra' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
+<div class="se-block posts_featured_block se-posts-featured-4">
+        <div class="se-posts-featured-list">
 
-					<?php
-					/* translators: %1$s: smiley */
-					$sport_extra_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'sport-extra' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$sport_extra_archive_content" );
+            <?php if ($query->have_posts()) : ?>
+                <?php while ($query->have_posts()) : $query->the_post();
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
+                    $img_id = get_post_thumbnail_id(get_the_ID());
+                    $full   = wp_get_attachment_image_src($img_id, 'posts_featured_image');
+                    $thumb  = wp_get_attachment_image_src($img_id, 'image_lazy');
+                ?>
+                    <article class="se-posts-featured-single">
 
+                        <?php if (has_post_thumbnail()) : ?>
+                            <div class="se-posts-featured-single-image">
+                                <a href="<?php the_permalink(); ?>">
+                                    <img
+                                        src="<?php echo esc_url($thumb[0]); ?>"
+                                        data-src="<?php echo esc_url($full[0]); ?>"
+                                        width="<?php echo esc_attr($full[1]); ?>"
+                                        height="<?php echo esc_attr($full[2]); ?>"
+                                        class="lazy-blur"
+                                        alt="<?php the_title_attribute(); ?>"
+                                    >
+                                </a>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="se-posts-featured-single-content">
+                            <span class="h4">
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_title(); ?>
+                                </a>
+                            </span>
+                        </div>
+
+                    </article>
+                <?php endwhile; ?>
+                <?php wp_reset_postdata(); ?>
+            <?php endif; ?>
+
+        </div>
+</div>
+
+</div>
 			</div><!-- .page-content -->
 		</section><!-- .error-404 -->
 
