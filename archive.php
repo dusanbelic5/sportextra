@@ -28,7 +28,7 @@ get_header();
 
                         echo '<div class="special-archive-section">';
 
-                        // ---- SCROLLING NEWS FOR CURRENT CATEGORY ----
+                    
                         if ( is_category() ) :
 
                             $current_category = get_queried_object();
@@ -39,10 +39,10 @@ get_header();
                                 'post_type'      => 'post',
                                 'posts_per_page' => -1,
                                 'category_name'  => $current_category_slug,
-                                'fields'         => 'ids', // we only need count
+                                'fields'         => 'ids',
                             ));
                             
-                            if ( $total_posts_in_category->found_posts >= 8 ) : // Only show if >= 8 posts
+                            if ( $total_posts_in_category->found_posts >= 8 ) :
 
                                 $args_scrolling = array(
                                     'post_type'      => 'post',

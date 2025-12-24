@@ -104,12 +104,12 @@
             span{
                 background-color:var(--color-1);
                 color:white;
-                padding:.5rem;
+                padding:.5rem .8rem;
             }
             a{
                 background-color:#efefef;
                 color:var(--color-2);
-                padding:.5rem;
+                padding:.5rem .8rem;
                 transition:background 350ms;
                 &:hover{
                     background-color:#ccdee8;

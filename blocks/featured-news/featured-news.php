@@ -71,6 +71,12 @@ $featured_news_query_right = new WP_Query($args_right);
                     $img_id = get_post_thumbnail_id();
                     $full   = wp_get_attachment_image_src( $img_id, 'featured_news_image' );
                     $thumb  = wp_get_attachment_image_src( $img_id, 'image_lazy' );
+                    if ( empty($thumb) || $thumb[3] === false ) {
+                        $thumb = wp_get_attachment_image_src($img_id, 'large');
+                    }
+                    if ( empty($full) || $full[3] === false ) {
+                        $full = wp_get_attachment_image_src($img_id, 'large');
+                    }
                     ?>
                     <a href="<?php echo esc_url(get_permalink()); ?>">
                         <img 

@@ -374,7 +374,7 @@ add_filter('intermediate_image_sizes_advanced', function ($sizes) {
 function se_custom_archive_posts_per_page( $query ) {
 
     if ( ! is_admin() && $query->is_main_query() && $query->is_archive() ) {
-        $query->set( 'posts_per_page', 8 );
+        $query->set( 'posts_per_page', 12 );
     }
 
 }

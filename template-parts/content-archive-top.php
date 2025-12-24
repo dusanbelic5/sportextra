@@ -2,11 +2,11 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
     
-    <!-- Featured Image (lazy-blur like block) -->
+    
     <?php if ( has_post_thumbnail() ) : 
         $img_id = get_post_thumbnail_id();
         $full   = wp_get_attachment_image_src($img_id, 'featured_news_image');
-        $thumb  = wp_get_attachment_image_src($img_id, 'image_lazy'); // small / lazy version
+        $thumb  = wp_get_attachment_image_src($img_id, 'image_lazy');
     ?>
         <div class="se-post-thumbnail">
             <a href="<?php echo esc_url(get_permalink()); ?>">

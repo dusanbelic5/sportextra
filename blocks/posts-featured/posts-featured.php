@@ -13,6 +13,7 @@ $heading         = get_field('heading');
 $featured_style  = get_field('featured_style');
 $post_to_display = get_field('posts_to_display');
 $link_learn_more = get_field('link_learn_more');
+
 if ($link_learn_more && !is_wp_error($link_learn_more)) {
     $learn_more_url= get_term_link($link_learn_more);
 }
@@ -30,6 +31,12 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
                 $img_id = get_post_thumbnail_id($selected_post);
                 $full   = wp_get_attachment_image_src($img_id, 'posts_featured_image');
                 $thumb  = wp_get_attachment_image_src($img_id, 'image_lazy');
+                if ( empty($thumb) || $thumb[3] === false ) {
+                    $thumb = wp_get_attachment_image_src($img_id, 'large');
+                }
+                if ( empty($full) || $full[3] === false ) {
+                    $full = wp_get_attachment_image_src($img_id, 'large');
+                }
                 setup_postdata($selected_post);
                 $count++;
                 // First post wrapper (style 5 only)
@@ -55,6 +62,20 @@ if ($link_learn_more && !is_wp_error($link_learn_more)) {
                                     height="<?php echo esc_attr($full[2]); ?>"
                                     class="lazy-blur"
                                     alt="<?php echo esc_attr(get_the_title($selected_post)); ?>"
+                                >
+                            </a>
+                        </div>
+                        <?php
+                        }else{ ?>
+                        <div class="se-posts-featured-single-image">
+                            <a href="<?php echo esc_url( get_permalink($selected_post) ); ?>">
+                                <img
+                                    src="<?= get_theme_file_uri( 'img/default-thumbnail-44-25.webp' );?>"
+                                    data-src="<?= get_theme_file_uri( 'img/default-thumbnail-324-182.webp' );?>"
+                                    width="324px"
+                                    height="182px"
+                                    class="lazy-blur"
+                                    alt="<?php echo esc_attr( get_the_title( $selected_post ) ); ?>"
                                 >
                             </a>
                         </div>
